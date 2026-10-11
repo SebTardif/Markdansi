@@ -1,13 +1,17 @@
 # Changelog
 
-## 0.3.5 - Unreleased
+## 0.3.6 - Unreleased
 
-- Dependencies: refresh Vite and compatible transitive packages, removing vulnerable source-map-js 1.2.1 from development tooling.
+## 0.3.5 (2026-10-11)
+
+**Highlights:** Preserve literal Markdown in streamed code blocks, fix nested-list and wrapping layout, and remove a high-severity development dependency vulnerability.
+
 - Streaming: buffer unlabelled fenced code until its closing fence, preserving literal Markdown inside the block.
-- Internal: share code-block merging and streamed block buffering while preserving rendered output (#23, thanks @copiumnicus).
-- Dependencies: refresh runtime packages and development tools, preserving numeric-reference validation and single-pass entity decoding with Marked 18.1.
 - Lists: indent every nested level, preserve code indentation, and fit item content beside its marker (#21, thanks @devYRPauli).
 - Wrapping: stop leaving a stray letter on the previous line when an orphan phrase like `with  the` has extra spaces (#20, thanks @devYRPauli).
+- Dependencies: refresh Vite and compatible transitive packages, removing vulnerable source-map-js 1.2.1 from development tooling.
+- Dependencies: refresh runtime packages and development tools, preserving numeric-reference validation and single-pass entity decoding with Marked 18.1.
+- Internal: share code-block merging and streamed block buffering while preserving rendered output (#23, thanks @copiumnicus).
 
 ## 0.3.4 (2026-09-13)
 
