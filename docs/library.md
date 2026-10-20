@@ -46,6 +46,7 @@ The built-in theme names are `default`, `dim`, `bright`, `solarized`, `monochrom
 - Links use OSC-8 when enabled and supported. Without hyperlinks, inline links render as `label (URL)` and autolinks render as the URL.
 - `wrap: false` disables hard wrapping and causes `width` to be ignored.
 - Paragraphs and wrapped table cells keep source spacing within phrases when moving trailing articles or prepositions to the next line.
+- Chinese, Japanese, and Korean text can wrap without spaces, preserving grapheme clusters, styles, and hyperlinks. Opening punctuation stays with the following text; closing punctuation stays with the preceding text. Unbreakable words or punctuation groups wider than the available width can still overflow.
 - Reference definitions with indented title continuations are kept together instead of becoming boxed code.
 - Text character references are decoded once. Invalid numeric references become `�`, and references inside code stay literal.
 
