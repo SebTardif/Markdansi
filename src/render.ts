@@ -393,9 +393,7 @@ function renderParagraph(node: Paragraph, ctx: RenderContext): string[] {
     inDefinitions = false;
     normalized.push(line);
   }
-  const lines = normalized.flatMap((l) =>
-    wrapWithPrefix(l, ctx.options.width ?? 80, ctx.options.wrap),
-  );
+  const lines = wrapWithPrefix(normalized.join("\n"), ctx.options.width ?? 80, ctx.options.wrap);
   return lines.map((l) => `${l}\n`);
 }
 

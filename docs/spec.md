@@ -60,7 +60,7 @@ Each theme entry holds simple SGR intents (bold/italic plus named, `#rrggbb`, or
 - Inline: strong, emphasis, code spans, autolinks/links, strikethrough (GFM `~~`), backslash escapes.
 - Code blocks: monospace box (unicode or ascii; `codeBox=false` disables). Optional gutter with 1‑based line numbers when `codeGutter=true`. If `lang` present, show faint header label. Highlighter hook may recolor text but must not add/remove newlines. Code blocks wrap to the available width by default (hard-wrap long tokens); set `codeWrap=false` to allow overflow.
 - Tables: box-drawing (unicode default, ascii or none). Respect GFM alignment per column, pad cells by `tablePadding`, optional dense borders. Can truncate cell text (`tableTruncate=true`, `tableEllipsis` marker) to keep width. Width balancing shrinks columns while possible; if still too wide, cells overflow.
-- Wrapping: word-wrap on spaces; uses `string-width` on stripped text. Preserve hard breaks; words longer than width may overflow. Code blocks wrap by default; turn off with `codeWrap=false`.
+- Wrapping: word-wrap on spaces and between CJK grapheme clusters; uses `string-width` on stripped text. Keep opening/closing punctuation with adjacent text and preserve ANSI styles and hyperlinks. Preserve hard breaks; unbreakable words or punctuation groups longer than width may overflow. Code blocks wrap by default; turn off with `codeWrap=false`.
 - Hyperlinks: OSC‑8 when supported and allowed; fallback to underlined text plus URL in parentheses.
 - Error handling: never throw on malformed emphasis; leave literals untouched if unmatched.
 
@@ -70,7 +70,7 @@ Each theme entry holds simple SGR intents (bold/italic plus named, `#rrggbb`, or
 2. **Build light IR** (nodes: paragraph, heading, list, listItem, taskItem, table, tableRow, tableCell, code, inline text/emph/strong/del/code/link).
 3. **Render** to ANSI:
    - Style map from theme to SGR codes.
-   - Wrap paragraphs/table cells using `string-width` + `strip-ansi`; wrap only breaks on spaces.
+   - Wrap paragraphs/table cells using `string-width` + `strip-ansi`; break on spaces and CJK grapheme boundaries while keeping punctuation with adjacent text.
    - OSC‑8 links when `hyperlinks` true; otherwise underline + optional URL suffix.
    - Track active SGR for wrapping splits to re-open styles on new lines.
 

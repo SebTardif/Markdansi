@@ -2,6 +2,9 @@
 
 ## 0.3.6 - Unreleased
 
+- Wrapping: wrap unspaced Chinese, Japanese, and Korean text by terminal columns while preserving punctuation, graphemes, styles, and hyperlinks (#28, thanks @xwjdsh).
+- Dependencies: refresh Marked, Node.js types, Vitest, and Oxc development tools within the existing runtime requirements.
+
 ## 0.3.5 (2026-10-11)
 
 **Highlights:** Preserve literal Markdown in streamed code blocks, fix nested-list and wrapping layout, and remove a high-severity development dependency vulnerability.
