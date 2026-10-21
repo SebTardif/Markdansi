@@ -4,6 +4,7 @@
 
 - Wrapping: wrap unspaced Chinese, Japanese, and Korean text by terminal columns while preserving punctuation, graphemes, styles, and hyperlinks (#28, thanks @xwjdsh).
 - Dependencies: refresh Marked, Node.js types, Vitest, and Oxc development tools within the existing runtime requirements.
+- Development: update pnpm to 11.28.6 and refresh Oxc formatting and linting tools.
 
 ## 0.3.5 (2026-10-11)
 
