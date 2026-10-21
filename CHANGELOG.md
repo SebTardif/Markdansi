@@ -1,6 +1,10 @@
 # Changelog
 
-## 0.3.6 - Unreleased
+## Unreleased
+
+## 0.3.6 (2026-10-21)
+
+**Highlights:** Wrap Chinese, Japanese, and Korean text correctly in terminals while preserving styles and hyperlinks.
 
 - Wrapping: wrap unspaced Chinese, Japanese, and Korean text by terminal columns while preserving punctuation, graphemes, styles, and hyperlinks (#28, thanks @xwjdsh).
 - Dependencies: refresh Marked, Node.js types, Vitest, and Oxc development tools within the existing runtime requirements.
