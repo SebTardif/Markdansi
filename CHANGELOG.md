@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Wrapping: preserve input OSC progress controls in rendered and streamed output, fixing a regression in 0.3.6 while retaining CJK wrapping, styles, and hyperlinks.
+- Streaming: keep fenced code buffered until a valid closing fence, preserving literal Markdown after fence-like body lines (#32, thanks @SebTardif).
 
 ## 0.3.6 (2026-10-21)
 

@@ -15,6 +15,34 @@ describe("markdown streamer (hybrid)", () => {
     expect(s.push(" world\n")).toBe("Hello world\n");
   });
 
+  it("does not close a fence on a body line that only starts with the marker", () => {
+    const markdown = "```\n```js\n**literal**\n    ```\n```\n";
+    const streamed = createMarkdownStreamer({ render: renderNoColor }).finish(markdown);
+    expect(streamed.trimEnd()).toBe(renderNoColor(markdown).trimEnd());
+  });
+
+  it.each(["```js", "    ```", "\t```", "```\u00a0", "``", "~~~"])(
+    "keeps buffering after a non-closing fence line: %j",
+    (line) => {
+      const s = createMarkdownStreamer({ render: renderNoColor });
+      expect(s.push("```\n")).toBe("");
+      expect(s.push(`${line}\n**literal**\n`)).toBe("");
+      expect(s.push("```\n")).toContain("**literal**");
+      expect(s.finish()).toBe("");
+    },
+  );
+
+  it.each([
+    ["```", "```"],
+    ["```", "   ```` \t"],
+    ["~~~~", "  ~~~~~"],
+  ])("flushes %s on its valid closer %j", (opener, closer) => {
+    const s = createMarkdownStreamer({ render: renderNoColor });
+    expect(s.push(`${opener}\n**literal**\n`)).toBe("");
+    expect(s.push(`${closer}\n`)).toContain("**literal**");
+    expect(s.push("**after**\n")).toBe("after\n");
+  });
+
   it("buffers fenced code blocks until the closing fence", () => {
     const s = createMarkdownStreamer({
       render: renderNoColor,

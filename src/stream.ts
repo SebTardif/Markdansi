@@ -62,9 +62,12 @@ function isFenceStart(line: string): FenceState | null {
 }
 
 function isFenceEnd(line: string, fence: FenceState): boolean {
-  const trimmed = line.trimStart();
-  const token = fence.char.repeat(fence.len);
-  return trimmed.startsWith(token);
+  const rest = line.replace(/^ {0,3}/, "");
+  if (!rest.startsWith(fence.char)) return false;
+  let count = 0;
+  while (rest[count] === fence.char) count += 1;
+  if (count < fence.len) return false;
+  return /^[ \t]*$/.test(rest.slice(count));
 }
 
 function isTableSeparator(line: string): boolean {
